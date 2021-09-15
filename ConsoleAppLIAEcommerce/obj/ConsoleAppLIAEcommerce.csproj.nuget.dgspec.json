@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dev\\workspace-vs\\TechLyceum\\BookMaterial\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce.csproj": {}
+    "C:\\Users\\zeyna\\Source\\Repos\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce.csproj": {}
   },
   "projects": {
-    "C:\\dev\\workspace-vs\\TechLyceum\\BookMaterial\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce.csproj": {
+    "C:\\Users\\zeyna\\Source\\Repos\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\workspace-vs\\TechLyceum\\BookMaterial\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce.csproj",
+        "projectUniqueName": "C:\\Users\\zeyna\\Source\\Repos\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce.csproj",
         "projectName": "ConsoleAppLIAEcommerce",
-        "projectPath": "C:\\dev\\workspace-vs\\TechLyceum\\BookMaterial\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce.csproj",
-        "packagesPath": "C:\\Users\\erno\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\workspace-vs\\TechLyceum\\BookMaterial\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce\\obj\\",
+        "projectPath": "C:\\Users\\zeyna\\Source\\Repos\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce.csproj",
+        "packagesPath": "C:\\Users\\zeyna\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zeyna\\Source\\Repos\\ConsoleAppLIAEcommerce\\ConsoleAppLIAEcommerce\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\erno\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\zeyna\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,15 +40,23 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.9, )"
+              "version": "[5.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.9, )"
+              "version": "[5.0.10, )"
             }
           },
           "imports": [
@@ -69,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
