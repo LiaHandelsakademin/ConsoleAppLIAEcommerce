@@ -15,10 +15,10 @@ namespace ConsoleAppLIAEcommerce.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.9")
+                .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Product", b =>
+            modelBuilder.Entity("ConsoleAppLIAEcommerce.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -82,6 +82,62 @@ namespace ConsoleAppLIAEcommerce.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            Description = "Land: Sverige",
+                            DiscountedPrice = 19.90m,
+                            Height = 0.0,
+                            Length = 0.0,
+                            MinimumQuantity = 0,
+                            MyProperty = 0,
+                            Name = "Ägg",
+                            Price = 25.90m,
+                            Quantity = 0,
+                            RewardPoints = 0,
+                            ShortDescription = "Frigående",
+                            Status = true,
+                            Weight = 0.0,
+                            Width = 0.0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Land: Tyskland",
+                            DiscountedPrice = 7.50m,
+                            Height = 0.0,
+                            Length = 0.0,
+                            MinimumQuantity = 0,
+                            MyProperty = 0,
+                            Name = "Smör",
+                            Price = 10.90m,
+                            Quantity = 0,
+                            RewardPoints = 0,
+                            ShortDescription = "Ekologisk",
+                            Status = true,
+                            Weight = 0.0,
+                            Width = 0.0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Land: Italien",
+                            DiscountedPrice = 4.50m,
+                            Height = 0.0,
+                            Length = 0.0,
+                            MinimumQuantity = 0,
+                            MyProperty = 0,
+                            Name = "Pasta",
+                            Price = 6.50m,
+                            Quantity = 0,
+                            RewardPoints = 0,
+                            ShortDescription = "Fussilli",
+                            Status = false,
+                            Weight = 0.0,
+                            Width = 0.0
+                        });
                 });
 #pragma warning restore 612, 618
         }
