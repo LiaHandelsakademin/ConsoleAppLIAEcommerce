@@ -21,18 +21,31 @@ namespace ConsoleAppLIAEcommerce
                 ProductsController ProductsController = new ProductsController();
                 ProductsController.ListProducts();
             }
-            if (Input.Equals("2"))
-            {
-                Product Product = new Product();
-                ProductsController ProductsController = new ProductsController();
-                ProductsController.AddProduct(Product);
-            }
+            //if (Input.Equals("2"))
+            //{
+            //    Product Product = new Product();
+            //    ProductsController ProductsController = new ProductsController();
+            //    ProductsController.AddProduct(Product);
+            //}
             else if (Input.Equals("2"))
             {
                 Product Product = new Product();
                 ProductsController ProductsController = new ProductsController();
                 ProductsController.AddProduct(Product);
             }
+            else if (Input.Equals("3"))
+            {
+                Product product = new Product();
+                ProductsController ProductsController = new ProductsController();
+                ProductsController.UpdateProduct(product);
+            }
+            else if (Input.Equals("4"))
+            {
+                Product product = new Product();
+                ProductsController ProductsController = new ProductsController();
+                ProductsController.DeleteProduct(product);
+            }
+
         }
     }
 }
