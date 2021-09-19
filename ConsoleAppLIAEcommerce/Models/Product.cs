@@ -11,7 +11,7 @@ namespace ConsoleAppLIAEcommerce
     class Product
     {
         [Key]
-        public int Id { get; set; }
+        public int ProductId { get; set; }
         public string Name { get; set; }
         public string ShortDescription { get; set; }
         public string Description { get; set; }
@@ -50,7 +50,7 @@ namespace ConsoleAppLIAEcommerce
         // Points collected by the custmer when they buy this product
         public int RewardPoints { get; set; }
 
-        //public ICollection<Category> Categories { get; set; }
+        public ICollection<ProductCategory> ProductCategories { get; set; }
 
         [InverseProperty(nameof(Picture.Product))]
         public ICollection<Picture> Pictures { get; set; }

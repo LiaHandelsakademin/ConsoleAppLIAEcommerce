@@ -40,7 +40,7 @@ namespace ConsoleAppLIAEcommerce
         public void DeleteProduct(Product product )
         {
             Console.WriteLine("Enter product id to be deleted: ");
-            product.Id =  Convert.ToInt32(Console.ReadLine());
+            product.ProductId =  Convert.ToInt32(Console.ReadLine());
 
             MyDbContext.Products.Remove(product);
             MyDbContext.SaveChanges();
@@ -52,7 +52,7 @@ namespace ConsoleAppLIAEcommerce
         public void UpdateProduct(Product product)
         {
             Console.WriteLine("Enter product id to be updated: ");
-            product.Id = Convert.ToInt32(Console.ReadLine());
+            product.ProductId = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter new name: ");
             string name = Console.ReadLine();
             product.Name = name;

@@ -2,15 +2,28 @@
 
 namespace ConsoleAppLIAEcommerce.Migrations
 {
-    public partial class all : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ShortDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -33,7 +46,7 @@ namespace ConsoleAppLIAEcommerce.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
                 });
 
             migrationBuilder.CreateTable(
@@ -43,8 +56,7 @@ namespace ConsoleAppLIAEcommerce.Migrations
                     PicId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PicName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: true)
+                    ProductId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,22 +65,42 @@ namespace ConsoleAppLIAEcommerce.Migrations
                         name: "FK_Pictures_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductCategories",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductCategories", x => x.ProductId);
+                    table.ForeignKey(
+                        name: "FK_ProductCategories_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductCategories_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Pictures",
-                columns: new[] { "PicId", "Id", "PicName", "ProductId" },
-                values: new object[,]
-                {
-                    { 1, 0, "url 1...", null },
-                    { 2, 0, "url 2...", null }
-                });
+                table: "Categories",
+                columns: new[] { "CategoryId", "CategoryName" },
+                values: new object[] { 1, "Mejeri" });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "Description", "DiscountedPrice", "Height", "Length", "MainImageUrl", "MinimumQuantity", "Model", "MyProperty", "Name", "Price", "Quantity", "RewardPoints", "SKU", "ShortDescription", "Status", "UPC", "Weight", "Width" },
+                columns: new[] { "ProductId", "Description", "DiscountedPrice", "Height", "Length", "MainImageUrl", "MinimumQuantity", "Model", "MyProperty", "Name", "Price", "Quantity", "RewardPoints", "SKU", "ShortDescription", "Status", "UPC", "Weight", "Width" },
                 values: new object[,]
                 {
                     { 1, "Land: Sverige", 19.90m, 0.0, 0.0, null, 0, null, 0, "Ägg", 25.90m, 0, 0, null, "Frigående", true, null, 0.0, 0.0 },
@@ -76,16 +108,37 @@ namespace ConsoleAppLIAEcommerce.Migrations
                     { 3, "Land: Italien", 4.50m, 0.0, 0.0, null, 0, null, 0, "Pasta", 6.50m, 0, 0, null, "Fussilli", false, null, 0.0, 0.0 }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Pictures",
+                columns: new[] { "PicId", "PicName", "ProductId" },
+                values: new object[] { 2, "url 2...", 2 });
+
+            migrationBuilder.InsertData(
+                table: "Pictures",
+                columns: new[] { "PicId", "PicName", "ProductId" },
+                values: new object[] { 1, "url 1...", 3 });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Pictures_ProductId",
                 table: "Pictures",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCategories_CategoryId",
+                table: "ProductCategories",
+                column: "CategoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Pictures");
+
+            migrationBuilder.DropTable(
+                name: "ProductCategories");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Products");

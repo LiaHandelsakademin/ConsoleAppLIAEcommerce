@@ -10,6 +10,10 @@ namespace ConsoleAppLIAEcommerce
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Picture> Pictures { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+
+
         string connectionString = "Server=DESKTOP-PH8D08N\\SQLEXPRESS;Database=ConsoleAppLIAEcommerce;Trusted_Connection=True;";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -20,7 +24,7 @@ namespace ConsoleAppLIAEcommerce
             modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
-                    Id = 1,
+                    ProductId = 1,
                     Name = "Ägg",
                     ShortDescription = "Frigående",
                     Description = "Land: Sverige",
@@ -32,24 +36,26 @@ namespace ConsoleAppLIAEcommerce
                 },
                 new Product
                 {
-                    Id = 2,
+                    ProductId = 2,
                     Name = "Smör",
                     ShortDescription = "Ekologisk",
                     Description = "Land: Tyskland",
                     Price = 10.90m,
                     DiscountedPrice = 7.50m,
                     Status = true
+                     
 
                 },
                 new Product
                 {
-                    Id = 3,
+                    ProductId = 3,
                     Name = "Pasta",
                     ShortDescription = "Fussilli",
                     Description = "Land: Italien",
                     Price = 6.50m,
                     DiscountedPrice = 4.50m,
                     Status = false
+
 
                 } 
 
@@ -58,15 +64,37 @@ namespace ConsoleAppLIAEcommerce
                 new Picture
                 {
                 PicId = 1,
-                PicName = "url 1..."
-                },
+                PicName = "url 1...",
+                ProductId = 3
+                }
+                ,
                 new Picture
                 {
                     PicId = 2,
-                    PicName = "url 2..."
+                    PicName = "url 2...",
+                    ProductId = 2
 
                 }
             );
+
+            modelBuilder.Entity<Category>().HasData(
+                new Category
+                {
+                    CategoryId = 1,
+                    CategoryName = "Mejeri"
+
+                }
+                );
+            modelBuilder.Entity<ProductCategory>().HasData(
+                new ProductCategory
+                {
+                    CategoryId = 1,
+                    ProductId = 2
+
+                }
+                );
+
+
         }
     }
 }

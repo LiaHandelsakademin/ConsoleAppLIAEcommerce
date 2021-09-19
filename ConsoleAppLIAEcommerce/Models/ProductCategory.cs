@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+
+
 
 namespace ConsoleAppLIAEcommerce.Models
 {
-    class Picture
+    class ProductCategory
     {
         [Key]
-        public int PicId { get; set; }
-        public string PicName { get; set; }
-        
         [ForeignKey("Product")]
         public int ProductId { get; set; }
-
-        //[ForeignKey(nameof(ProductId))]
-        //[InverseProperty("Picture")]
         public Product Product { get; set; }
+        [ForeignKey("Category")]
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }
