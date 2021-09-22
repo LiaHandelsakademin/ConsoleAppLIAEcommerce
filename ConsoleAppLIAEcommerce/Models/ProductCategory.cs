@@ -10,12 +10,14 @@ namespace ConsoleAppLIAEcommerce.Models
 {
     class ProductCategory
     {
-        [Key]
-        [ForeignKey("Product")]
-        public int ProductId { get; set; }
-        public Product Product { get; set; }
-        [ForeignKey("Category")]
-        public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public int MyProperty { get; set; }
+
+        //[Key]
+        //[ForeignKey("Product")]
+        //public int ProductId { get; set; }
+        //public Product Product { get; set; }
+        //[ForeignKey("Category")]
+        //public int CategoryId { get; set; }
+        //public Category Category { get; set; }
     }
 }

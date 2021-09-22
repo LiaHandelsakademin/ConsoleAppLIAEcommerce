@@ -24,7 +24,6 @@ namespace ConsoleAppLIAEcommerce
 
         // Universla Product Code
         public string UPC  { get; set; }
-        public int MyProperty { get; set; }
 
         // Quantity in stock
         public int Quantity { get; set; }
@@ -50,11 +49,18 @@ namespace ConsoleAppLIAEcommerce
         // Points collected by the custmer when they buy this product
         public int RewardPoints { get; set; }
 
-        public ICollection<ProductCategory> ProductCategories { get; set; }
+        //public ICollection<ProductCategory> ProductCategories { get; set; }
 
         [InverseProperty(nameof(Picture.Product))]
         public ICollection<Picture> Pictures { get; set; }
-       
+
+        public DateTime AddDateTime { get; set; }
+
+
+
+
+
+
 
     }
 }

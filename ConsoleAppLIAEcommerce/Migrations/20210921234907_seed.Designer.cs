@@ -4,14 +4,16 @@ using ConsoleAppLIAEcommerce;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConsoleAppLIAEcommerce.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210921234907_seed")]
+    partial class seed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,18 +34,13 @@ namespace ConsoleAppLIAEcommerce.Migrations
                     b.Property<string>("CategoryDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CategoryId1")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CategoryImageUrl")
+                    b.Property<string>("CategoryImage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CategoryName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoryId");
-
-                    b.HasIndex("CategoryId1");
 
                     b.ToTable("Categories");
 
@@ -52,14 +49,12 @@ namespace ConsoleAppLIAEcommerce.Migrations
                         {
                             CategoryId = 1,
                             AddDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CategoryImageUrl = "www. dkd",
                             CategoryName = "Mejeri, ost & ägg"
                         },
                         new
                         {
                             CategoryId = 2,
                             AddDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CategoryImageUrl = "www.jdjd",
                             CategoryName = "Vete & Bröd & Pasta"
                         });
                 });
@@ -77,9 +72,6 @@ namespace ConsoleAppLIAEcommerce.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("PicId");
 
                     b.HasIndex("ProductId");
@@ -91,15 +83,45 @@ namespace ConsoleAppLIAEcommerce.Migrations
                         {
                             PicId = 1,
                             PicName = "url 1...",
-                            ProductId = 3,
-                            Url = "www.hdhd"
+                            ProductId = 3
                         },
                         new
                         {
                             PicId = 2,
                             PicName = "url 2...",
-                            ProductId = 2,
-                            Url = "www.hdhd"
+                            ProductId = 2
+                        });
+                });
+
+            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.SubCategory", b =>
+                {
+                    b.Property<int>("SubCategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("SubCategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SubCategoryId");
+
+                    b.ToTable("SubCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            SubCategoryId = 1,
+                            SubCategoryName = "Mejeri"
+                        },
+                        new
+                        {
+                            SubCategoryId = 2,
+                            SubCategoryName = "Ägg"
+                        },
+                        new
+                        {
+                            SubCategoryId = 3,
+                            SubCategoryName = "Pasta & Noodles"
                         });
                 });
 
@@ -137,6 +159,9 @@ namespace ConsoleAppLIAEcommerce.Migrations
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("MyProperty")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -158,6 +183,9 @@ namespace ConsoleAppLIAEcommerce.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
+                    b.Property<int>("SubCategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UPC")
                         .HasColumnType("nvarchar(max)");
 
@@ -171,6 +199,8 @@ namespace ConsoleAppLIAEcommerce.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("SubCategoryId");
+
                     b.ToTable("Products");
 
                     b.HasData(
@@ -183,12 +213,14 @@ namespace ConsoleAppLIAEcommerce.Migrations
                             Height = 0.0,
                             Length = 0.0,
                             MinimumQuantity = 0,
+                            MyProperty = 0,
                             Name = "Ägg",
                             Price = 25.90m,
                             Quantity = 0,
                             RewardPoints = 0,
                             ShortDescription = "Frigående",
                             Status = true,
+                            SubCategoryId = 2,
                             Weight = 0.0,
                             Width = 0.0
                         },
@@ -201,12 +233,14 @@ namespace ConsoleAppLIAEcommerce.Migrations
                             Height = 0.0,
                             Length = 0.0,
                             MinimumQuantity = 0,
+                            MyProperty = 0,
                             Name = "Smör",
                             Price = 10.90m,
                             Quantity = 0,
                             RewardPoints = 0,
                             ShortDescription = "Ekologisk",
                             Status = true,
+                            SubCategoryId = 1,
                             Weight = 0.0,
                             Width = 0.0
                         },
@@ -219,22 +253,17 @@ namespace ConsoleAppLIAEcommerce.Migrations
                             Height = 0.0,
                             Length = 0.0,
                             MinimumQuantity = 0,
+                            MyProperty = 0,
                             Name = "Pasta",
                             Price = 6.50m,
                             Quantity = 0,
                             RewardPoints = 0,
                             ShortDescription = "Fussilli",
                             Status = false,
+                            SubCategoryId = 3,
                             Weight = 0.0,
                             Width = 0.0
                         });
-                });
-
-            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Category", b =>
-                {
-                    b.HasOne("ConsoleAppLIAEcommerce.Models.Category", null)
-                        .WithMany("Categories")
-                        .HasForeignKey("CategoryId1");
                 });
 
             modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Picture", b =>
@@ -253,13 +282,24 @@ namespace ConsoleAppLIAEcommerce.Migrations
                     b.HasOne("ConsoleAppLIAEcommerce.Models.Category", null)
                         .WithMany("Product")
                         .HasForeignKey("CategoryId");
+
+                    b.HasOne("ConsoleAppLIAEcommerce.Models.SubCategory", "SubCategory")
+                        .WithMany("Products")
+                        .HasForeignKey("SubCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SubCategory");
                 });
 
             modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Category", b =>
                 {
-                    b.Navigation("Categories");
-
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.SubCategory", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("ConsoleAppLIAEcommerce.Product", b =>

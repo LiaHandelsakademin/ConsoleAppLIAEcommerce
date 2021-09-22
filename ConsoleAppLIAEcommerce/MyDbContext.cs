@@ -11,7 +11,7 @@ namespace ConsoleAppLIAEcommerce
         public DbSet<Product> Products { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<ProductCategory> ProductCategories { get; set; }
+        //public DbSet<ProductCategory> ProductCategories { get; set; }
 
 
         string connectionString = "Server=DESKTOP-PH8D08N\\SQLEXPRESS;Database=ConsoleAppLIAEcommerce;Trusted_Connection=True;";
@@ -31,6 +31,7 @@ namespace ConsoleAppLIAEcommerce
                     Price = 25.90m,
                     DiscountedPrice = 19.90m,
                     Status = true
+                    //CategoryId = 1,
 
 
                 },
@@ -43,7 +44,9 @@ namespace ConsoleAppLIAEcommerce
                     Price = 10.90m,
                     DiscountedPrice = 7.50m,
                     Status = true
-                     
+                    //CategoryId = 1,
+
+
 
                 },
                 new Product
@@ -55,9 +58,11 @@ namespace ConsoleAppLIAEcommerce
                     Price = 6.50m,
                     DiscountedPrice = 4.50m,
                     Status = false
+                    //CategoryId = 2,
 
 
-                } 
+
+                }
 
                 );
             modelBuilder.Entity<Picture>().HasData(
@@ -65,14 +70,19 @@ namespace ConsoleAppLIAEcommerce
                 {
                 PicId = 1,
                 PicName = "url 1...",
-                ProductId = 3
+                Url = "www.hdhd",
+                ProductId = 3,
+                //CategoryPic = "url C1"
                 }
                 ,
                 new Picture
                 {
                     PicId = 2,
                     PicName = "url 2...",
-                    ProductId = 2
+                    Url = "www.hdhd",
+                    ProductId = 2,
+                    //CategoryPic = "url C2"
+
 
                 }
             );
@@ -81,18 +91,31 @@ namespace ConsoleAppLIAEcommerce
                 new Category
                 {
                     CategoryId = 1,
-                    CategoryName = "Mejeri"
-
+                    CategoryName = "Mejeri, ost & ägg",
+                    CategoryImageUrl = "www. dkd"
+                    //CategoryPicture = null 
                 }
-                );
-            modelBuilder.Entity<ProductCategory>().HasData(
-                new ProductCategory
+                ,
+                new Category
                 {
-                    CategoryId = 1,
-                    ProductId = 2
+                    CategoryId = 2,
+                    CategoryName = "Vete & Bröd & Pasta",
+                    CategoryImageUrl = "www.jdjd"
+                    //CategoryPicture = null
+
 
                 }
                 );
+
+
+            //modelBuilder.Entity<ProductCategory>().HasData(
+            //    new ProductCategory
+            //    {
+            //        CategoryId = 1,
+            //        ProductId = 2
+
+            //    }
+            //    );
 
 
         }

@@ -11,12 +11,15 @@ namespace ConsoleAppLIAEcommerce.Models
         [Key]
         public int PicId { get; set; }
         public string PicName { get; set; }
-        
+        public string Url { get; set; }
+
         [ForeignKey("Product")]
         public int ProductId { get; set; }
 
-        //[ForeignKey(nameof(ProductId))]
-        //[InverseProperty("Picture")]
+
         public Product Product { get; set; }
+
+
+
     }
 }
