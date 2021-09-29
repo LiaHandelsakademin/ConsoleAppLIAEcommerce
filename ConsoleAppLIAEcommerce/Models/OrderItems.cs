@@ -6,17 +6,21 @@ using System.Text;
 
 namespace ConsoleAppLIAEcommerce.Models
 {
-    class Picture
+    class OrderItems
     {
         [Key]
-        public int PicId { get; set; }
-        public string PicName { get; set; }
-        public string Url { get; set; }
+        public int OrderItemId { get; set; }
 
-        [ForeignKey("Product")]
+        [ForeignKey("Order")]
+        public int OrderId { get; set; }
+        public Order Order { get; set; }
+
         public int ProductId { get; set; }
         public Product Product { get; set; }
 
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
+        public decimal DiscountedPrice { get; set; }
 
 
     }

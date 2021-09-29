@@ -49,12 +49,16 @@ namespace ConsoleAppLIAEcommerce
         // Points collected by the custmer when they buy this product
         public int RewardPoints { get; set; }
 
-        //public ICollection<ProductCategory> ProductCategories { get; set; }
+        public Stocks Stocks { get; set; }
 
         [InverseProperty(nameof(Picture.Product))]
         public ICollection<Picture> Pictures { get; set; }
 
         public DateTime AddDateTime { get; set; }
+
+        public ICollection<OrderItems> OrderItems { get; set; }
+
+
 
 
 

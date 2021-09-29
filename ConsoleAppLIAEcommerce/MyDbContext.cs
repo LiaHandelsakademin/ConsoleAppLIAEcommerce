@@ -11,6 +11,14 @@ namespace ConsoleAppLIAEcommerce
         public DbSet<Product> Products { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Warehouses> Warehouses { get; set; }
+        public DbSet<Stocks> Stocks { get; set; }
+        public DbSet<OrderItems> OrderItems { get; set; }
+
+
+
+
         //public DbSet<ProductCategory> ProductCategories { get; set; }
 
 
