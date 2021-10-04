@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleAppLIAEcommerce.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -44,5 +45,7 @@ namespace ConsoleAppLIAEcommerce
 
         // Points collected by the custmer when they buy this product
         public int RewardPoints { get; set; }
+
+        public List<Tag> Tags { get; set; }
     }
 }

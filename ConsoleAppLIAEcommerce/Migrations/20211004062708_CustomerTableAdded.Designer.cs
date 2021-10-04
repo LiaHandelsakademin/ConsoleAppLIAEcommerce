@@ -4,62 +4,22 @@ using ConsoleAppLIAEcommerce;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConsoleAppLIAEcommerce.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211004062708_CustomerTableAdded")]
+    partial class CustomerTableAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Address", b =>
-                {
-                    b.Property<int>("AddressId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Company")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Postcode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AddressId");
-
-                    b.HasIndex("CustomerId")
-                        .IsUnique();
-
-                    b.ToTable("Addresses");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Address");
-                });
 
             modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Customer", b =>
                 {
@@ -83,37 +43,12 @@ namespace ConsoleAppLIAEcommerce.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TagId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Telephone")
                         .HasColumnType("int");
 
                     b.HasKey("CustomerId");
 
-                    b.HasIndex("TagId");
-
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Tag", b =>
-                {
-                    b.Property<int>("TagId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("TagId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("ConsoleAppLIAEcommerce.Product", b =>
@@ -236,56 +171,6 @@ namespace ConsoleAppLIAEcommerce.Migrations
                             Weight = 0.0,
                             Width = 0.0
                         });
-                });
-
-            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Shipping", b =>
-                {
-                    b.HasBaseType("ConsoleAppLIAEcommerce.Models.Address");
-
-                    b.Property<bool>("IsBillingAddressTheSame")
-                        .HasColumnType("bit");
-
-                    b.HasDiscriminator().HasValue("Shipping");
-                });
-
-            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Address", b =>
-                {
-                    b.HasOne("ConsoleAppLIAEcommerce.Models.Customer", "Customer")
-                        .WithOne("Address")
-                        .HasForeignKey("ConsoleAppLIAEcommerce.Models.Address", "CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Customer", b =>
-                {
-                    b.HasOne("ConsoleAppLIAEcommerce.Models.Tag", null)
-                        .WithMany("customers")
-                        .HasForeignKey("TagId");
-                });
-
-            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Tag", b =>
-                {
-                    b.HasOne("ConsoleAppLIAEcommerce.Product", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("ProductId");
-                });
-
-            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Customer", b =>
-                {
-                    b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Tag", b =>
-                {
-                    b.Navigation("customers");
-                });
-
-            modelBuilder.Entity("ConsoleAppLIAEcommerce.Product", b =>
-                {
-                    b.Navigation("Tags");
                 });
 #pragma warning restore 612, 618
         }
