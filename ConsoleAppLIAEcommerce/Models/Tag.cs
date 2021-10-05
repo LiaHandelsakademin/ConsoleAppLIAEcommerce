@@ -9,6 +9,7 @@ namespace ConsoleAppLIAEcommerce.Models
         public int TagId { get; set; }
         public string Title { get; set; }
 
-        public List<Customer> customers { get; set; }
+        //Navigation property
+        public List<ProductTag> ProductTags { get; set; }
     }
 }

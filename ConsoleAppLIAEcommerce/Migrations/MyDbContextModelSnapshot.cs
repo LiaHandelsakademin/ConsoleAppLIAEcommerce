@@ -83,17 +83,34 @@ namespace ConsoleAppLIAEcommerce.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TagId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Telephone")
                         .HasColumnType("int");
 
                     b.HasKey("CustomerId");
 
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.ProductTag", b =>
+                {
+                    b.Property<int>("ProductTagId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductTagId");
+
+                    b.HasIndex("ProductId");
+
                     b.HasIndex("TagId");
 
-                    b.ToTable("Customers");
+                    b.ToTable("ProductTags");
                 });
 
             modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Tag", b =>
@@ -103,15 +120,10 @@ namespace ConsoleAppLIAEcommerce.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TagId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Tags");
                 });
@@ -259,18 +271,23 @@ namespace ConsoleAppLIAEcommerce.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Customer", b =>
+            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.ProductTag", b =>
                 {
-                    b.HasOne("ConsoleAppLIAEcommerce.Models.Tag", null)
-                        .WithMany("customers")
-                        .HasForeignKey("TagId");
-                });
+                    b.HasOne("ConsoleAppLIAEcommerce.Product", "Product")
+                        .WithMany("ProductTags")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Tag", b =>
-                {
-                    b.HasOne("ConsoleAppLIAEcommerce.Product", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("ProductId");
+                    b.HasOne("ConsoleAppLIAEcommerce.Models.Tag", "Tag")
+                        .WithMany("ProductTags")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Customer", b =>
@@ -280,12 +297,12 @@ namespace ConsoleAppLIAEcommerce.Migrations
 
             modelBuilder.Entity("ConsoleAppLIAEcommerce.Models.Tag", b =>
                 {
-                    b.Navigation("customers");
+                    b.Navigation("ProductTags");
                 });
 
             modelBuilder.Entity("ConsoleAppLIAEcommerce.Product", b =>
                 {
-                    b.Navigation("Tags");
+                    b.Navigation("ProductTags");
                 });
 #pragma warning restore 612, 618
         }
